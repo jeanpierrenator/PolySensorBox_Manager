@@ -40,10 +40,9 @@ namespace Polysensor_boxManager
         private void bpWriteParameterToFile_Click(object sender, EventArgs e)
         {
             string path;
-            Debug.WriteLine("le debug train");
             updateConfigModel();
-            OpenFileDialog file = new OpenFileDialog();
-
+            SaveFileDialog file = new  SaveFileDialog();
+            file.DefaultExt = "xml";
             if (file.ShowDialog() == DialogResult.OK)
             {
                 path = file.FileName;

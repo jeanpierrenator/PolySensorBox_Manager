@@ -120,9 +120,12 @@ namespace Polysensor_boxManager
             form.GetComboBox().SelectedIndex = 0;
             form.ShowDialog();
             form.Dispose();
-            GroupBox physicalWindows = GetPhysicalBox(form.GetComboBox().Text, 0, myDataModel.physicals[myDataModel.physicalStringToId[form.GetComboBox().Text]].sensors);
-            flp_Physical.Controls.Add(physicalWindows);
-            listSensorView.Add(physicalWindows);
+            if (form.confirm == 1)
+            {
+                GroupBox physicalWindows = GetPhysicalBox(form.GetComboBox().Text, 0, myDataModel.physicals[myDataModel.physicalStringToId[form.GetComboBox().Text]].sensors);
+                flp_Physical.Controls.Add(physicalWindows);
+                listSensorView.Add(physicalWindows);
+            }
         }
 
         private void bt_removePhysical_Click(object sender, EventArgs e)
@@ -137,19 +140,21 @@ namespace Polysensor_boxManager
             form.ShowDialog();
         
             form.Dispose();
-            GroupBox gbtoRemove = new GroupBox();
-            foreach (GroupBox gb in listSensorView)
+            if (form.confirm == 1)
             {
-                if(form.GetComboBox().Text == gb.Text)
+                GroupBox gbtoRemove = new GroupBox();
+                foreach (GroupBox gb in listSensorView)
                 {
-                    gbtoRemove = gb;
+                    if (form.GetComboBox().Text == gb.Text)
+                    {
+                        gbtoRemove = gb;
+                    }
+
                 }
-                
+                listSensorView.Remove(gbtoRemove);
+                flp_Physical.Controls.Remove(gbtoRemove);
+                gbtoRemove.Dispose();
             }
-            listSensorView.Remove(gbtoRemove);
-            flp_Physical.Controls.Remove(gbtoRemove);
-            gbtoRemove.Dispose();
- 
             
         }
 

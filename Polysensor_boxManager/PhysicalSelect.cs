@@ -12,6 +12,7 @@ namespace Polysensor_boxManager
 {
     public partial class PhysicalSelectForm : Form
     {
+        public int confirm =0;
         public PhysicalSelectForm()
         {
             InitializeComponent();
@@ -33,6 +34,7 @@ namespace Polysensor_boxManager
         private void bt_ajouterPhysical_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+            confirm = 1;
             this.Close();
         }
     }

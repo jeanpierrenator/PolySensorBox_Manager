@@ -432,6 +432,21 @@ namespace Polysensor_boxManager
 
             return -1;
         }
+        public void setSensorToLine(int sensorID,int lineNumber)
+        {
+            if (lineNumber == 1)
+            {
+                this.line1Field = sensorID;
+            }
+            if (lineNumber == 2)
+            {
+                this.line2Field = sensorID;
+            }
+            if (lineNumber == 3)
+            {
+                this.line2Field = sensorID;
+            }
+        }
 
 
         public int getPeriodeOfPhysical(int idPhysical)
@@ -469,6 +484,19 @@ namespace Polysensor_boxManager
             }
             list = list.Distinct().ToList();
             return list;
+        }
+
+        public int validateConfig()
+        {
+            foreach(int sensorID in getListOfUsedSensor())
+            {
+                int retour = getLineNumberOfSensor(sensorID);
+                if(retour == -1)
+                {
+                    return retour;
+                }
+            }
+            return 0;
         }
     }
 

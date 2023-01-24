@@ -25,7 +25,6 @@ namespace Polysensor_boxManager
         private void bpReadParameterFromFile_Click(object sender, EventArgs e)
         {
             string path;
-            Debug.WriteLine("le debug train");
             OpenFileDialog file = new OpenFileDialog();
             
             if (file.ShowDialog() == DialogResult.OK)
@@ -41,12 +40,20 @@ namespace Polysensor_boxManager
         {
             string path;
             updateConfigModel();
-            SaveFileDialog file = new  SaveFileDialog();
-            file.DefaultExt = "xml";
-            if (file.ShowDialog() == DialogResult.OK)
+            if (myConfigModel.validateConfig() != -1)
             {
-                path = file.FileName;
-                myConfigXMLManager.saveConfig(path, myConfigModel);
+                SaveFileDialog file = new SaveFileDialog();
+                file.DefaultExt = "xml";
+                if (file.ShowDialog() == DialogResult.OK)
+                {
+                    path = file.FileName;
+                    myConfigXMLManager.saveConfig(path, myConfigModel);
+                }
+            }
+            else
+            {
+                string message = "line mal configuré";
+                MessageBox.Show(message);
             }
 
         }
@@ -81,12 +88,26 @@ namespace Polysensor_boxManager
                     Cb_ComPort.Enabled = false;
                     lb_comPortText.Text = "ouvert";
                     bpWriteParameterToBox.Enabled = true;
+                    bpReadParameterFromBox.Enabled = true;
+                    if (SerialProtocol.sendConnectionFrame() == -1)
+                    {
+                        lb_comPortText.ForeColor = System.Drawing.Color.Red;
+                        lb_comPortText.Text = "erreur communication";
+                        _serialManager.ClosePort();
+                        Bt_openPort.Text = "Open";
+                        Cb_ComPort.Enabled = true;
+                        bpWriteParameterToBox.Enabled = false;
+                        bpReadParameterFromBox.Enabled = false;
+                    }
                 }
                 catch (Exception ex)
                 {
                     lb_comPortText.ForeColor = System.Drawing.Color.Red;
                     lb_comPortText.Text = "erreur overture";
                 }
+               
+                
+               
             }
             else
             {
@@ -97,6 +118,7 @@ namespace Polysensor_boxManager
                     Cb_ComPort.Enabled = true;
                     lb_comPortText.Text = "fermée";
                     bpWriteParameterToBox.Enabled = false;
+                    bpReadParameterFromBox.Enabled = false;
                 }
                 catch (Exception ex)
                 {
@@ -345,6 +367,16 @@ namespace Polysensor_boxManager
             updateConfigModel();
 
             SerialProtocol.SendConfig(myConfigModel);
+        }
+
+        private void bpReadParameterFromBox_Click(object sender, EventArgs e)
+        {
+            ConfigModel temp = SerialProtocol.readConfigFromBox();
+            if(temp != null)
+            {
+                myConfigModel = temp;
+                printConfig();
+            }
         }
     }
 }

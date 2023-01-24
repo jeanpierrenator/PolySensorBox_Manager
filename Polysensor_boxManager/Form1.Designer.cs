@@ -45,6 +45,7 @@
             this.bt_addPhysical = new System.Windows.Forms.Button();
             this.bpWriteParameterToFile = new System.Windows.Forms.Button();
             this.bpWriteParameterToBox = new System.Windows.Forms.Button();
+            this.bpReadParameterFromBox = new System.Windows.Forms.Button();
             this.gb_Line.SuspendLayout();
             this.gb_line3.SuspendLayout();
             this.gb_line2.SuspendLayout();
@@ -222,11 +223,23 @@
             this.bpWriteParameterToBox.UseVisualStyleBackColor = true;
             this.bpWriteParameterToBox.Click += new System.EventHandler(this.bpWriteParameterToBox_Click);
             // 
+            // bpReadParameterFromBox
+            // 
+            this.bpReadParameterFromBox.Enabled = false;
+            this.bpReadParameterFromBox.Location = new System.Drawing.Point(348, 447);
+            this.bpReadParameterFromBox.Name = "bpReadParameterFromBox";
+            this.bpReadParameterFromBox.Size = new System.Drawing.Size(249, 29);
+            this.bpReadParameterFromBox.TabIndex = 8;
+            this.bpReadParameterFromBox.Text = "Read Parameter from a box";
+            this.bpReadParameterFromBox.UseVisualStyleBackColor = true;
+            this.bpReadParameterFromBox.Click += new System.EventHandler(this.bpReadParameterFromBox_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1239, 485);
+            this.Controls.Add(this.bpReadParameterFromBox);
             this.Controls.Add(this.bpWriteParameterToBox);
             this.Controls.Add(this.bpWriteParameterToFile);
             this.Controls.Add(this.gb_physical);
@@ -266,5 +279,6 @@
         private Button bt_removePhysical;
         private Button bpWriteParameterToFile;
         private Button bpWriteParameterToBox;
+        private Button bpReadParameterFromBox;
     }
 }

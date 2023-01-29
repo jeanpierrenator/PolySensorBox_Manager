@@ -1,4 +1,6 @@
-﻿namespace Polysensor_boxManager
+﻿using System.Windows.Forms;
+
+namespace Polysensor_boxManager
 {
     partial class Form1
     {
@@ -46,16 +48,31 @@
             this.bpWriteParameterToFile = new System.Windows.Forms.Button();
             this.bpWriteParameterToBox = new System.Windows.Forms.Button();
             this.bpReadParameterFromBox = new System.Windows.Forms.Button();
+            this.SensorTab = new System.Windows.Forms.TabControl();
+            this.SensorPage = new System.Windows.Forms.TabPage();
+            this.LoraPage = new System.Windows.Forms.TabPage();
+            this.Tb_LoraPeriod = new System.Windows.Forms.TextBox();
+            this.cb_loraMode = new System.Windows.Forms.CheckBox();
+            this.TB_AppKey = new System.Windows.Forms.TextBox();
+            this.Tb_DevUUID = new System.Windows.Forms.TextBox();
+            this.TB_appUUID = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.gb_Line.SuspendLayout();
             this.gb_line3.SuspendLayout();
             this.gb_line2.SuspendLayout();
             this.gb_line1.SuspendLayout();
             this.gb_physical.SuspendLayout();
+            this.SensorTab.SuspendLayout();
+            this.SensorPage.SuspendLayout();
+            this.LoraPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // bpReadParameterFromFile
             // 
-            this.bpReadParameterFromFile.Location = new System.Drawing.Point(991, 447);
+            this.bpReadParameterFromFile.Location = new System.Drawing.Point(1006, 456);
             this.bpReadParameterFromFile.Name = "bpReadParameterFromFile";
             this.bpReadParameterFromFile.Size = new System.Drawing.Size(236, 29);
             this.bpReadParameterFromFile.TabIndex = 0;
@@ -66,7 +83,7 @@
             // Cb_ComPort
             // 
             this.Cb_ComPort.FormattingEnabled = true;
-            this.Cb_ComPort.Location = new System.Drawing.Point(77, 444);
+            this.Cb_ComPort.Location = new System.Drawing.Point(92, 453);
             this.Cb_ComPort.Name = "Cb_ComPort";
             this.Cb_ComPort.Size = new System.Drawing.Size(135, 28);
             this.Cb_ComPort.TabIndex = 1;
@@ -76,7 +93,7 @@
             // lb_comPortText
             // 
             this.lb_comPortText.AutoSize = true;
-            this.lb_comPortText.Location = new System.Drawing.Point(3, 447);
+            this.lb_comPortText.Location = new System.Drawing.Point(18, 456);
             this.lb_comPortText.Name = "lb_comPortText";
             this.lb_comPortText.Size = new System.Drawing.Size(68, 20);
             this.lb_comPortText.TabIndex = 2;
@@ -85,7 +102,7 @@
             // Bt_openPort
             // 
             this.Bt_openPort.Enabled = false;
-            this.Bt_openPort.Location = new System.Drawing.Point(227, 443);
+            this.Bt_openPort.Location = new System.Drawing.Point(242, 452);
             this.Bt_openPort.Name = "Bt_openPort";
             this.Bt_openPort.Size = new System.Drawing.Size(94, 29);
             this.Bt_openPort.TabIndex = 3;
@@ -98,7 +115,7 @@
             this.gb_Line.Controls.Add(this.gb_line3);
             this.gb_Line.Controls.Add(this.gb_line2);
             this.gb_Line.Controls.Add(this.gb_line1);
-            this.gb_Line.Location = new System.Drawing.Point(10, 53);
+            this.gb_Line.Location = new System.Drawing.Point(6, 6);
             this.gb_Line.Name = "gb_Line";
             this.gb_Line.Size = new System.Drawing.Size(315, 381);
             this.gb_Line.TabIndex = 4;
@@ -168,7 +185,7 @@
             this.gb_physical.Controls.Add(this.bt_removePhysical);
             this.gb_physical.Controls.Add(this.flp_Physical);
             this.gb_physical.Controls.Add(this.bt_addPhysical);
-            this.gb_physical.Location = new System.Drawing.Point(331, 53);
+            this.gb_physical.Location = new System.Drawing.Point(327, 6);
             this.gb_physical.Name = "gb_physical";
             this.gb_physical.Size = new System.Drawing.Size(853, 381);
             this.gb_physical.TabIndex = 5;
@@ -204,7 +221,7 @@
             // 
             // bpWriteParameterToFile
             // 
-            this.bpWriteParameterToFile.Location = new System.Drawing.Point(809, 447);
+            this.bpWriteParameterToFile.Location = new System.Drawing.Point(824, 456);
             this.bpWriteParameterToFile.Name = "bpWriteParameterToFile";
             this.bpWriteParameterToFile.Size = new System.Drawing.Size(176, 29);
             this.bpWriteParameterToFile.TabIndex = 6;
@@ -215,7 +232,7 @@
             // bpWriteParameterToBox
             // 
             this.bpWriteParameterToBox.Enabled = false;
-            this.bpWriteParameterToBox.Location = new System.Drawing.Point(603, 447);
+            this.bpWriteParameterToBox.Location = new System.Drawing.Point(618, 456);
             this.bpWriteParameterToBox.Name = "bpWriteParameterToBox";
             this.bpWriteParameterToBox.Size = new System.Drawing.Size(200, 29);
             this.bpWriteParameterToBox.TabIndex = 7;
@@ -226,7 +243,7 @@
             // bpReadParameterFromBox
             // 
             this.bpReadParameterFromBox.Enabled = false;
-            this.bpReadParameterFromBox.Location = new System.Drawing.Point(348, 447);
+            this.bpReadParameterFromBox.Location = new System.Drawing.Point(363, 456);
             this.bpReadParameterFromBox.Name = "bpReadParameterFromBox";
             this.bpReadParameterFromBox.Size = new System.Drawing.Size(249, 29);
             this.bpReadParameterFromBox.TabIndex = 8;
@@ -234,16 +251,132 @@
             this.bpReadParameterFromBox.UseVisualStyleBackColor = true;
             this.bpReadParameterFromBox.Click += new System.EventHandler(this.bpReadParameterFromBox_Click);
             // 
+            // SensorTab
+            // 
+            this.SensorTab.Controls.Add(this.SensorPage);
+            this.SensorTab.Controls.Add(this.LoraPage);
+            this.SensorTab.Location = new System.Drawing.Point(11, 12);
+            this.SensorTab.Name = "SensorTab";
+            this.SensorTab.SelectedIndex = 0;
+            this.SensorTab.Size = new System.Drawing.Size(1224, 434);
+            this.SensorTab.TabIndex = 9;
+            this.SensorTab.SelectedIndexChanged += new System.EventHandler(this.SensorTab_SelectedIndexChanged);
+            // 
+            // SensorPage
+            // 
+            this.SensorPage.Controls.Add(this.gb_Line);
+            this.SensorPage.Controls.Add(this.gb_physical);
+            this.SensorPage.Location = new System.Drawing.Point(4, 29);
+            this.SensorPage.Name = "SensorPage";
+            this.SensorPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SensorPage.Size = new System.Drawing.Size(1216, 401);
+            this.SensorPage.TabIndex = 0;
+            this.SensorPage.Text = "Sensor";
+            this.SensorPage.UseVisualStyleBackColor = true;
+            // 
+            // LoraPage
+            // 
+            this.LoraPage.Controls.Add(this.Tb_LoraPeriod);
+            this.LoraPage.Controls.Add(this.cb_loraMode);
+            this.LoraPage.Controls.Add(this.TB_AppKey);
+            this.LoraPage.Controls.Add(this.Tb_DevUUID);
+            this.LoraPage.Controls.Add(this.TB_appUUID);
+            this.LoraPage.Controls.Add(this.label4);
+            this.LoraPage.Controls.Add(this.label3);
+            this.LoraPage.Controls.Add(this.label2);
+            this.LoraPage.Controls.Add(this.label1);
+            this.LoraPage.Location = new System.Drawing.Point(4, 29);
+            this.LoraPage.Name = "LoraPage";
+            this.LoraPage.Padding = new System.Windows.Forms.Padding(3);
+            this.LoraPage.Size = new System.Drawing.Size(1216, 401);
+            this.LoraPage.TabIndex = 1;
+            this.LoraPage.Text = "Lora";
+            this.LoraPage.UseVisualStyleBackColor = true;
+            // 
+            // Tb_LoraPeriod
+            // 
+            this.Tb_LoraPeriod.Location = new System.Drawing.Point(133, 158);
+            this.Tb_LoraPeriod.Name = "Tb_LoraPeriod";
+            this.Tb_LoraPeriod.Size = new System.Drawing.Size(279, 27);
+            this.Tb_LoraPeriod.TabIndex = 9;
+            // 
+            // cb_loraMode
+            // 
+            this.cb_loraMode.AutoSize = true;
+            this.cb_loraMode.Location = new System.Drawing.Point(29, 205);
+            this.cb_loraMode.Name = "cb_loraMode";
+            this.cb_loraMode.Size = new System.Drawing.Size(176, 24);
+            this.cb_loraMode.TabIndex = 8;
+            this.cb_loraMode.Text = "send when data ready";
+            this.cb_loraMode.UseVisualStyleBackColor = true;
+            this.cb_loraMode.CheckedChanged += new System.EventHandler(this.cb_loraMode_CheckedChanged);
+            // 
+            // TB_AppKey
+            // 
+            this.TB_AppKey.Location = new System.Drawing.Point(133, 125);
+            this.TB_AppKey.Name = "TB_AppKey";
+            this.TB_AppKey.Size = new System.Drawing.Size(279, 27);
+            this.TB_AppKey.TabIndex = 7;
+            // 
+            // Tb_DevUUID
+            // 
+            this.Tb_DevUUID.Location = new System.Drawing.Point(133, 85);
+            this.Tb_DevUUID.Name = "Tb_DevUUID";
+            this.Tb_DevUUID.Size = new System.Drawing.Size(279, 27);
+            this.Tb_DevUUID.TabIndex = 6;
+            // 
+            // TB_appUUID
+            // 
+            this.TB_appUUID.Location = new System.Drawing.Point(133, 39);
+            this.TB_appUUID.Name = "TB_appUUID";
+            this.TB_appUUID.Size = new System.Drawing.Size(279, 27);
+            this.TB_appUUID.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(29, 163);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 20);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "SendPeriod:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 125);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 20);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "AppKey:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 85);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "DevUUID:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "AppUUID";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1239, 485);
+            this.ClientSize = new System.Drawing.Size(1278, 501);
+            this.Controls.Add(this.SensorTab);
             this.Controls.Add(this.bpReadParameterFromBox);
             this.Controls.Add(this.bpWriteParameterToBox);
             this.Controls.Add(this.bpWriteParameterToFile);
-            this.Controls.Add(this.gb_physical);
-            this.Controls.Add(this.gb_Line);
             this.Controls.Add(this.Bt_openPort);
             this.Controls.Add(this.lb_comPortText);
             this.Controls.Add(this.Cb_ComPort);
@@ -255,6 +388,10 @@
             this.gb_line2.ResumeLayout(false);
             this.gb_line1.ResumeLayout(false);
             this.gb_physical.ResumeLayout(false);
+            this.SensorTab.ResumeLayout(false);
+            this.SensorPage.ResumeLayout(false);
+            this.LoraPage.ResumeLayout(false);
+            this.LoraPage.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,5 +417,17 @@
         private Button bpWriteParameterToFile;
         private Button bpWriteParameterToBox;
         private Button bpReadParameterFromBox;
+        private TabControl SensorTab;
+        private TabPage SensorPage;
+        private TabPage LoraPage;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private TextBox TB_appUUID;
+        private TextBox TB_AppKey;
+        private TextBox Tb_DevUUID;
+        private CheckBox cb_loraMode;
+        private TextBox Tb_LoraPeriod;
     }
 }

@@ -18,7 +18,7 @@ namespace Polysensor_boxManager
 
             // Allow the user to set the appropriate properties.
             _serialPort.PortName = _serialPort.PortName;
-            _serialPort.BaudRate = 115200;
+            _serialPort.BaudRate = 9600;
             _serialPort.Parity = _serialPort.Parity;
             _serialPort.DataBits = _serialPort.DataBits;
             _serialPort.StopBits = _serialPort.StopBits;

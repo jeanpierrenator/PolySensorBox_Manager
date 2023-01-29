@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,6 +29,9 @@ namespace Polysensor_boxManager
         private static readonly byte READ_CONFIG_FRAME_HEADER = 0x04;
         private static readonly byte[] READ_CONFIG_OK_FRAME = { 0x04, 0xFF };
         private static readonly byte[] READ_CONFIG_BAD_FRAME = { 0x04, 0x00 };
+
+        private static readonly byte SIZE_OF_LORA_FRAME = 37;
+        private static readonly byte CODE_LORA_FRAME = 0x05;
         public static int SendConfig(ConfigModel myConfigModel)
         {
             byte[] buffer;
@@ -186,6 +190,33 @@ namespace Polysensor_boxManager
             }
             checksum = checksum % 256;
             return (byte)checksum;
+        }
+
+        internal static void sendLora(byte[] appKey, byte[] appUuid, byte[] DevUUID, int period)
+        {
+            byte[] buffer = new byte[SIZE_OF_LORA_FRAME];
+            buffer[0] = CODE_LORA_FRAME ;
+
+            for (int i = 0; i < 16; i++)
+            {
+                buffer[i + 1] = appKey[i];
+            }
+
+            for (int i = 0; i < 8; i++)
+            {
+                buffer[i + 17] = appUuid[i];
+                buffer[i + 25] = DevUUID[i];
+            }
+
+            buffer[33] = (byte)(period / 65536);
+            buffer[34] = (byte)(period / 256);
+            buffer[35] = (byte)(period);
+
+            buffer[SIZE_OF_LORA_FRAME-1] = calculChecksum(buffer,SIZE_OF_LORA_FRAME);
+            SerialManager.GetInstance().clear();
+            SerialManager.GetInstance().Write(buffer, SIZE_OF_LORA_FRAME);
+
+
         }
     }
 }

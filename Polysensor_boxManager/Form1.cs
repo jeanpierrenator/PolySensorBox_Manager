@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Polysensor_boxManager
 {
@@ -364,9 +365,48 @@ namespace Polysensor_boxManager
 
         private void bpWriteParameterToBox_Click(object sender, EventArgs e)
         {
-            updateConfigModel();
 
-            SerialProtocol.SendConfig(myConfigModel);
+            if (SensorTab.SelectedIndex == 1)
+            {
+                try
+                {
+                    int period = 0;
+                    if(this.cb_loraMode.Checked == true)
+                    {
+                        period = 0;
+                    }
+                    else
+                    {
+                        period = int.Parse(Tb_LoraPeriod.Text);
+                    }
+                    // on Tab lora
+                    byte[] appKey = Enumerable.Range(0, TB_AppKey.Text.Length)
+                    .Where(x => x % 2 == 0)
+                             .Select(x => Convert.ToByte(TB_AppKey.Text.Substring(x, 2), 16))
+                             .ToArray();
+                    byte[] appUUID = Enumerable.Range(0, TB_appUUID.Text.Length)
+                    .Where(x => x % 2 == 0)
+                             .Select(x => Convert.ToByte(TB_appUUID.Text.Substring(x, 2), 16))
+                             .ToArray();
+                    byte[] devUUID = Enumerable.Range(0, Tb_DevUUID.Text.Length)
+                    .Where(x => x % 2 == 0)
+                             .Select(x => Convert.ToByte(Tb_DevUUID.Text.Substring(x, 2), 16))
+                             .ToArray();
+                    SerialProtocol.sendLora(appKey, appUUID, devUUID, period);
+                }
+                catch
+                {
+                    string message = "champs lora mal configuré";
+                    MessageBox.Show(message);
+                }
+            }
+            else
+            {
+                // on tab sensor 
+                updateConfigModel();
+                SerialProtocol.SendConfig(myConfigModel);
+            }
+            
         }
 
         private void bpReadParameterFromBox_Click(object sender, EventArgs e)
@@ -376,6 +416,93 @@ namespace Polysensor_boxManager
             {
                 myConfigModel = temp;
                 printConfig();
+            }
+        }
+
+
+        private void SensorTab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (SensorTab.SelectedIndex == 1)
+            {
+                bpWriteParameterToFile.Enabled = false;
+                bpReadParameterFromFile.Enabled = false;
+            }
+            else
+            {
+                bpWriteParameterToFile.Enabled = true;
+                bpReadParameterFromFile.Enabled = true;
+            }
+            
+        }
+        private bool isHexaInput(char key)
+        {
+            if(((key >= '0' && key <= '9') ||
+                      (key >= 'A' && key <= 'F') ||
+                      (key >= 'a' && key <= 'f') ||
+                      (key == (char)Keys.Back)))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void TB_appUUID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check for a hexadecimal character
+            Debug.WriteLine("in key press");
+            if (TB_appUUID.Text.Length < 16 || (e.KeyChar == (char)Keys.Back))
+            {
+                if (isHexaInput(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Tb_DevUUID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check for a hexadecimal character
+            if (Tb_DevUUID.Text.Length < 16 || (e.KeyChar == (char)Keys.Back))
+            {
+                if (isHexaInput(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+        private void TB_AppKey_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check for a hexadecimal character
+            if (TB_AppKey.Text.Length < 32 || (e.KeyChar == (char)Keys.Back))
+            {
+                if (isHexaInput(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cb_loraMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if(this.cb_loraMode.Checked == true)
+            {
+                Tb_LoraPeriod.Enabled = false;
+            }
+            else
+            {
+                Tb_LoraPeriod.Enabled = true;
             }
         }
     }

@@ -26,23 +26,38 @@ namespace Polysensor_boxManager
         }
         public void initPhysical()
         {
+            // temperature
             physicalStringToId.Add(DataConstant.STRING_TEMP, DataConstant.ID_TEMP);
-            physicalStringToId.Add(DataConstant.STRING_HUMIDITY, DataConstant.ID_HUMIDITY);
-            physicalStringToId.Add(DataConstant.STRING_LUX, DataConstant.ID_LUX);
-            physicalStringToId.Add(DataConstant.STRING_ECO2, DataConstant.ID_ECO2);
-            physicalStringToId.Add(DataConstant.STRING_TOVC, DataConstant.ID_TOVC);
-            physicalStringToId.Add(DataConstant.STRING_CO2, DataConstant.ID_CO2);
-            physicalStringToId.Add(DataConstant.STRING_PRESS, DataConstant.ID_PRESS);
-            physicalStringToId.Add(DataConstant.STRING_UV, DataConstant.ID_UV);
-
             physicals.Add(DataConstant.ID_TEMP, new Physical(DataConstant.STRING_TEMP));
+
+            // humidity
+            physicalStringToId.Add(DataConstant.STRING_HUMIDITY, DataConstant.ID_HUMIDITY);
             physicals.Add(DataConstant.ID_HUMIDITY, new Physical(DataConstant.STRING_HUMIDITY));
+
+            // lux
+            physicalStringToId.Add(DataConstant.STRING_LUX, DataConstant.ID_LUX);
             physicals.Add(DataConstant.ID_LUX, new Physical(DataConstant.STRING_LUX));
+
+            // eco2
+            physicalStringToId.Add(DataConstant.STRING_ECO2, DataConstant.ID_ECO2);
             physicals.Add(DataConstant.ID_ECO2, new Physical(DataConstant.STRING_ECO2));
+
+            // tovc
+            physicalStringToId.Add(DataConstant.STRING_TOVC, DataConstant.ID_TOVC);
             physicals.Add(DataConstant.ID_TOVC, new Physical(DataConstant.STRING_TOVC));
+
+            // co2
+            physicalStringToId.Add(DataConstant.STRING_CO2, DataConstant.ID_CO2);
             physicals.Add(DataConstant.ID_CO2, new Physical(DataConstant.STRING_CO2));
+
+            // press
+            physicalStringToId.Add(DataConstant.STRING_PRESS, DataConstant.ID_PRESS);
             physicals.Add(DataConstant.ID_PRESS, new Physical(DataConstant.STRING_PRESS));
+
+            // uv
+            physicalStringToId.Add(DataConstant.STRING_UV, DataConstant.ID_UV);
             physicals.Add(DataConstant.ID_UV, new Physical(DataConstant.STRING_UV));
+
         }
         public void initCapteur()
         {

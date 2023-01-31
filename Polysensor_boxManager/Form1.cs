@@ -21,6 +21,9 @@ namespace Polysensor_boxManager
             myDataModel = DataModel.getInstance();
             myConfigXMLManager = new ConfigXMLManager();
             myConfigModel = new ConfigModel();
+            this.TB_appUUID.KeyPress += this.TB_appUUID_KeyPress;
+            this.TB_AppKey.KeyPress += this.TB_AppKey_KeyPress;
+            this.Tb_DevUUID.KeyPress += this.Tb_DevUUID_KeyPress;
         }
 
         private void bpReadParameterFromFile_Click(object sender, EventArgs e)
@@ -194,6 +197,7 @@ namespace Polysensor_boxManager
             {
                 cb.Items.Add(sensor.name);
             }
+            if(cb.Items.Count >0)
             cb.SelectedIndex = 0;
             cb.Name = "Sensor";
 

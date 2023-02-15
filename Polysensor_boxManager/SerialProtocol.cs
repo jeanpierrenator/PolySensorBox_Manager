@@ -129,8 +129,8 @@ namespace Polysensor_boxManager
                 if (buffer[0] == READ_CONFIG_FRAME_HEADER)
                 {
                     if (validateFrame(buffer) == 1)
-                    {
-                        Debug.WriteLine("bad checksum");
+                    { Debug.WriteLine("bad checksum");
+                       
                         SerialManager.GetInstance().clear();
                         SerialManager.GetInstance().Write(READ_CONFIG_BAD_FRAME, READ_CONFIG_BAD_FRAME.Length);
                     }

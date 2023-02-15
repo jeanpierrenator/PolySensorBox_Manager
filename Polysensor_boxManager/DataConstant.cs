@@ -11,9 +11,9 @@ namespace Polysensor_boxManager
         public const int ID_TEMP = 1;
         public const string STRING_TEMP = "Temperature"; 
         public const int ID_HUMIDITY = 2;
-        public const string STRING_HUMIDITY = "Humidité";
+        public const string STRING_HUMIDITY = "Humidity";
         public const int ID_LUX = 3;
-        public const string STRING_LUX = "lux";
+        public const string STRING_LUX = "Brightness";
         public const int ID_ECO2 = 4;
         public const string STRING_ECO2 = "Eco2";
         public const int ID_TOVC = 5;
@@ -21,7 +21,7 @@ namespace Polysensor_boxManager
         public const int ID_CO2 = 6;
         public const string STRING_CO2 = "Co2";
         public const int ID_PRESS = 7;
-        public const string STRING_PRESS = "Pression";
+        public const string STRING_PRESS = "Pressure";
         public const int ID_UV = 8;
         public const string STRING_UV = "UV";
 
@@ -54,6 +54,11 @@ namespace Polysensor_boxManager
         public const string SGP30_NAME = "sgp30";
         public const int SGP30_RUNCONSO = 4000;
         public const int SGP30_SLEEPCONSO = 1;
+
+        public const int SCD41_ID = 7;
+        public const string SCD41_NAME = "scd41";
+        public const int SCD41_RUNCONSO = 4000;
+        public const int SCD41_SLEEPCONSO = 1;
 
     }
 }

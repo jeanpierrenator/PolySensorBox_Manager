@@ -61,26 +61,42 @@ namespace Polysensor_boxManager
 
         public ConfigModel()
         {
+            
             physicalIDToPhysicalPeriod = new Dictionary<int, int>();
             physicalIDToSensorID = new Dictionary<int, int>();
 
+            //temp
             physicalIDToPhysicalPeriod.Add(DataConstant.ID_TEMP, tempPeriodeField);
-            physicalIDToPhysicalPeriod.Add(DataConstant.ID_HUMIDITY, humidPeriodeField);
-            physicalIDToPhysicalPeriod.Add(DataConstant.ID_CO2, co2PeriodeField);
-            physicalIDToPhysicalPeriod.Add(DataConstant.ID_LUX, luxPeriodeField);
-            physicalIDToPhysicalPeriod.Add(DataConstant.ID_ECO2, eCo2PeriodeField);
-            physicalIDToPhysicalPeriod.Add(DataConstant.ID_TOVC, tovcPeriodeField);
-            physicalIDToPhysicalPeriod.Add(DataConstant.ID_UV, uvPeriodeField);
-            physicalIDToPhysicalPeriod.Add(DataConstant.ID_PRESS, pressionPeriodeField);
-
             physicalIDToSensorID.Add(DataConstant.ID_TEMP, tempSensorField);
+
+            //humidity
+            physicalIDToPhysicalPeriod.Add(DataConstant.ID_HUMIDITY, humidPeriodeField);
             physicalIDToSensorID.Add(DataConstant.ID_HUMIDITY, humidSensorField);
+
+            //Co2
+            physicalIDToPhysicalPeriod.Add(DataConstant.ID_CO2, co2PeriodeField);
             physicalIDToSensorID.Add(DataConstant.ID_CO2, co2SensorField);
+
+            //lux
+            physicalIDToPhysicalPeriod.Add(DataConstant.ID_LUX, luxPeriodeField);
             physicalIDToSensorID.Add(DataConstant.ID_LUX, luxSensorField);
+
+            //Eco2
+            physicalIDToPhysicalPeriod.Add(DataConstant.ID_ECO2, eCo2PeriodeField);
             physicalIDToSensorID.Add(DataConstant.ID_ECO2, eCo2SensorField);
+
+            //TOVC
+            physicalIDToPhysicalPeriod.Add(DataConstant.ID_TOVC, tovcPeriodeField);
             physicalIDToSensorID.Add(DataConstant.ID_TOVC, tovcSensorField);
+
+            //UV
+            physicalIDToPhysicalPeriod.Add(DataConstant.ID_UV, uvPeriodeField);
             physicalIDToSensorID.Add(DataConstant.ID_UV, uvSensorField);
+
+            //Press
+            physicalIDToPhysicalPeriod.Add(DataConstant.ID_PRESS, pressionPeriodeField);
             physicalIDToSensorID.Add(DataConstant.ID_PRESS, pressionSensorField);
+
         }
         public void clear()
         {
@@ -106,7 +122,7 @@ namespace Polysensor_boxManager
             foreach (int i in physicalIDToSensorID.Keys)
             {
                 physicalIDToSensorID[i] = 0;
-                physicalIDToSensorID[i] = 0;
+                physicalIDToPhysicalPeriod[i] = 0;
             }
         }
 
@@ -415,6 +431,9 @@ namespace Polysensor_boxManager
                 this.uvPeriodeField = value;
             }
         }
+
+
+        //methode 
         public int getLineNumberOfSensor(int sensorId)
         {
             if(this.line1Field == sensorId)

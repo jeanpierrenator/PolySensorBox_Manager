@@ -100,6 +100,13 @@ namespace Polysensor_boxManager
             physicals[DataConstant.ID_TOVC].sensors.Add(sgp30);
             sensors.Add(DataConstant.SGP30_ID, sgp30);
             sensorStringToId.Add(DataConstant.SGP30_NAME, DataConstant.SGP30_ID);
+
+            Sensor scd41 = new Sensor(DataConstant.SCD41_ID, DataConstant.SCD41_NAME, DataConstant.SCD41_RUNCONSO, DataConstant.SCD41_SLEEPCONSO);
+            physicals[DataConstant.ID_TEMP].sensors.Add(scd41);
+            physicals[DataConstant.ID_HUMIDITY].sensors.Add(scd41);
+            physicals[DataConstant.ID_CO2].sensors.Add(scd41);
+            sensors.Add(DataConstant.SCD41_ID, scd41);
+            sensorStringToId.Add(DataConstant.SCD41_NAME, DataConstant.SCD41_ID);
         }
 
         public static DataModel getInstance()

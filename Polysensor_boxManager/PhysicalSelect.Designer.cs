@@ -39,7 +39,7 @@
             this.bt_ajouterPhysical.Name = "bt_ajouterPhysical";
             this.bt_ajouterPhysical.Size = new System.Drawing.Size(94, 29);
             this.bt_ajouterPhysical.TabIndex = 0;
-            this.bt_ajouterPhysical.Text = "ajouter";
+            this.bt_ajouterPhysical.Text = "add";
             this.bt_ajouterPhysical.UseVisualStyleBackColor = true;
             this.bt_ajouterPhysical.Click += new System.EventHandler(this.bt_ajouterPhysical_Click);
             // 
@@ -54,11 +54,11 @@
             // lb_capteur
             // 
             this.lb_capteur.AutoSize = true;
-            this.lb_capteur.Location = new System.Drawing.Point(35, 59);
+            this.lb_capteur.Location = new System.Drawing.Point(12, 61);
             this.lb_capteur.Name = "lb_capteur";
-            this.lb_capteur.Size = new System.Drawing.Size(66, 20);
+            this.lb_capteur.Size = new System.Drawing.Size(107, 20);
             this.lb_capteur.TabIndex = 2;
-            this.lb_capteur.Text = "capteur: ";
+            this.lb_capteur.Text = "Physical value: ";
             // 
             // PhysicalSelectForm
             // 

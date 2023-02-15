@@ -25,6 +25,10 @@ namespace Polysensor_boxManager
             this.TB_AppKey.KeyPress += this.TB_AppKey_KeyPress;
             this.Tb_DevUUID.KeyPress += this.Tb_DevUUID_KeyPress;
         }
+        private void promptError(string msg)
+        {
+            MessageBox.Show(msg);
+        }
 
         private void bpReadParameterFromFile_Click(object sender, EventArgs e)
         {
@@ -56,8 +60,8 @@ namespace Polysensor_boxManager
             }
             else
             {
-                string message = "line mal configuré";
-                MessageBox.Show(message);
+                string message = "Bad line configuration";
+                promptError(message);
             }
 
         }
@@ -90,24 +94,28 @@ namespace Polysensor_boxManager
                     _serialManager.OpenPort();
                     Bt_openPort.Text = "Close";
                     Cb_ComPort.Enabled = false;
-                    lb_comPortText.Text = "ouvert";
+                    lb_comPortText.Text = "Openned";
                     bpWriteParameterToBox.Enabled = true;
                     bpReadParameterFromBox.Enabled = true;
                     if (SerialProtocol.sendConnectionFrame() == -1)
                     {
                         lb_comPortText.ForeColor = System.Drawing.Color.Red;
-                        lb_comPortText.Text = "erreur communication";
+                        lb_comPortText.Text = "close";
                         _serialManager.ClosePort();
                         Bt_openPort.Text = "Open";
                         Cb_ComPort.Enabled = true;
                         bpWriteParameterToBox.Enabled = false;
                         bpReadParameterFromBox.Enabled = false;
+                        string message = "Not connected to a PolySensorBox";
+                        promptError(message);
                     }
                 }
                 catch (Exception ex)
                 {
                     lb_comPortText.ForeColor = System.Drawing.Color.Red;
-                    lb_comPortText.Text = "erreur overture";
+                    lb_comPortText.Text = "Error";
+                    string message = "Alredy openned port";
+                    promptError(message);
                 }
                
                 
@@ -340,12 +348,14 @@ namespace Polysensor_boxManager
             cb_line1.Items.Clear();
             foreach(String s in getAllActiveSensor())
                 cb_line1.Items.Add(s);
+            cb_line1.Items.Add("");
         }
         private void cb_line2_Click(object sender, EventArgs e)
         {
             cb_line2.Items.Clear();
             foreach (String s in getAllActiveSensor())
                 cb_line2.Items.Add(s);
+            cb_line2.Items.Add("");
         }
         private void cb_line3_Click(object sender, EventArgs e)
         {
@@ -353,6 +363,7 @@ namespace Polysensor_boxManager
 
             foreach (String s in getAllActiveSensor())
                 cb_line3.Items.Add(s);
+            cb_line3.Items.Add("");
 
         }
 
